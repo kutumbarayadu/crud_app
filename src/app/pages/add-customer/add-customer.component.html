@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title style="text-align: center; padding: 20px; font-size: 24px;">
+    Add Customer
+  </mat-card-title>
+  <div style="margin-bottom: 20px;">
+    <button mat-raised-button color="primary"  (click)="goToCustomers()">Back</button>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" required>
+      </mat-form-field>
+      <div style="text-align: center; margin-top: 20px;">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,104 @@
+.example-stretched-tabs {
+  max-width: 1280px;
+}
+.customer-table-container {
+  margin-top: 30px;
+}
+
+.customer {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.m-2 {
+  margin: 20px 0;
+}
+.customer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+.customer-table-container {
+  padding: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar{
+  background-color:#24247e;
+  color: white;
+
+}
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 240px;
+  background: #37474f;
+  color: #ffffff;
+}
+
+.sidenav-toolbar {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.mat-nav-list a {
+  color: #ffffff;
+  padding: 15px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.mat-nav-list a:hover {
+  background: #546e7a;
+}
+
+.mat-icon {
+  margin-right: 10px;
+}
+
+.content-toolbar {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.customer-table-container {
+  padding: 20px;
+}
+
+.customer button {
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 16px;
+}
+
+.mat-header-row {
+  background-color: #eeeeee;
+}
+
+.mat-row:hover {
+  background-color: #f5f5f5;
+}

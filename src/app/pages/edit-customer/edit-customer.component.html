@@ -1,0 +1,34 @@
+<button mat-raised-button color="primary" type="button" (click)="goToCustomers()">Back</button>
+<mat-card>
+  <mat-card-title style="text-align: center; padding: 10px;">Edit Customer</mat-card-title>
+  <div style="display: flex; justify-content: flex-start; margin-bottom: 10px;">
+  </div>
+
+  <mat-card-content>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <!-- Form fields -->
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstname" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastname" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phonenumber" required>
+      </mat-form-field>
+      <div style="display: flex; justify-content: center; margin-top: 20px; margin-left: 30px;">
+        <button mat-raised-button color="primary" type="submit" (click)=" update()">Update</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
