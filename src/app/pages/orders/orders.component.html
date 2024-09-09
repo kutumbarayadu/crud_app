@@ -1,1 +1,50 @@
 <p>orders works!</p>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="order_id">
+      <th mat-header-cell *matHeaderCellDef>order_id</th>
+      <td mat-cell *matCellDef="let customers"> {{customers.order_id}} </td>
+
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="order_date">
+      <th mat-header-cell *matHeaderCellDef> order_date </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.order_date}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> status </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.status}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="total_amount">
+      <th mat-header-cell *matHeaderCellDef> total_amount </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.total_amount}} </td>
+    </ng-container>
+    <ng-container matColumnDef="shipping_address">
+      <th mat-header-cell *matHeaderCellDef> shipping_address </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.shipping_address}} </td>
+    </ng-container>
+    <!-- Edit Column -->
+
+    <ng-container>
+      <ng-container matColumnDef="payment_method">
+        <th mat-header-cell *matHeaderCellDef> payment_method </th>
+        <td mat-cell *matCellDef="let customers">
+          {{customers.payment_method}}
+        </td>
+      </ng-container>
+
+
+  </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>
+
+

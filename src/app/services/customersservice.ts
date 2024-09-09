@@ -15,22 +15,18 @@ export class CustomerService {
   getCustomers(): Observable<customers[]> {
     return this.http.get<customers[]>(`${this.apiUrl}/customers`);
   }
-
   getCustomerById(id: number): Observable<customers> {
     return this.http.get<customers>(`${this.apiUrl}/getCustomerById/${id}`);
   }
   customersadd(customerData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/customersadd`, customerData);
   }
-
   updatecustomers(id: any, customerData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/update_customer/${id}`, customerData);
   }
   addresscreate(addressData:any):Observable<any>{
     return this.http.post<any>(`${this.apiUrl}/customerAddress`,addressData);
   }
-
-
   deleteCustomer(id: any): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteCustomer/${id}`);
   }
@@ -57,5 +53,8 @@ getsingleAddress(id:any): Observable<customers[]> {
 }
 updatesingleAddress(id: any, customerData: any): Observable<any> {
   return this.http.put(`${this.apiUrl}/customeraddressbyid/${id}`, customerData);
+}
+getorders(id:number):Observable<any> {
+  return this.http.get(`${this.apiUrl}/getPaymentById/${id}`);
 }
 }
