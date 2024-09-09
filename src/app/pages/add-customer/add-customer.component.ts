@@ -61,13 +61,10 @@ export class AddCustomerComponent implements OnInit {
     return { invalidName: true };
   }
   onSubmit() {
-    // Check if the form is valid
     if (!this.customerForm.valid) {
       this.showMessage('Please correct the form.', SwalMessageTypes.Warning);
       return;
     }
-
-    // Validate the first name field
     const firstName = this.customerForm.get('firstName')?.value;
     const firstNameValidation = this.nameValidator({ value: firstName });
 
@@ -75,8 +72,6 @@ export class AddCustomerComponent implements OnInit {
       Swal.fire('', 'Enter a valid first name.', 'warning');
       return;
     }
-
-    // Validate the last name field
     const lastName = this.customerForm.get('lastName')?.value;
     const lastNameValidation = this.nameValidator({ value: lastName });
 
@@ -85,14 +80,12 @@ export class AddCustomerComponent implements OnInit {
       return;
     }
 
-    // Validate the phone number field
+
     const phoneNumber = this.customerForm.get('phoneNumber')?.value;
     if (!/^[0-9]{10}$/.test(phoneNumber)) {
       Swal.fire('', 'Enter a valid phone number (10 digits).', 'warning');
       return;
     }
-
-    // If all validations pass, proceed to add the customer
     const customerData = this.customerForm.value;
 
     this.customerService.customersadd(customerData).subscribe(
@@ -108,30 +101,31 @@ export class AddCustomerComponent implements OnInit {
       },
       (error) => {
         console.error('Error adding customer:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'There was an issue adding the customer.',
-          confirmButtonText: 'Try Again'
-        });
+        if (error.status == 409 && error.error.error === 'Duplicate Email Address') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Error',
+            text: 'Email Id is already exist.',
+            confirmButtonText: 'Try Again'
+          });
+        }
+
       }
     );
   }
 
 
 
-  validateText(data: any): ValidateName {
-    const textInputs = [
-      { value: data.firstName, field: 'First Name' },
-      { value: data.lastName, field: 'Last Name' },
+  // validateText(data: any): ValidateName {
+  //   const textInputs = [
+  //     { value: data.firstName, field: 'First Name' },
+  //     { value: data.lastName, field: 'Last Name' },
 
 
-    ];
+  //   ];
 
-    return this.nameValidate(textInputs) || { isValid: true };
-  }
-
-  // Function to validate each text input field
+  //   return this.nameValidate(textInputs) || { isValid: true };
+  // }
   nameValidate(textInputs: any[]): ValidateName {
     for (const input of textInputs) {
       if (!this.isTextValid(input.value)) {
@@ -141,26 +135,18 @@ export class AddCustomerComponent implements OnInit {
 
     return { isValid: true };
   }
-
-  // Function to check if the text input is valid
   isTextValid(areaName: string): boolean {
     const areaNameRegex = /^[A-Za-z\s-]+$/;
     const trimmedAreaName = areaName.trim();
 
     return areaNameRegex.test(trimmedAreaName);
   }
-
-  // Function to build an error message based on the failed field
   buildErrorMessage(failedField: string): string {
     return `The ${failedField} is invalid.`;
   }
-
-  // Function to display a SweetAlert2 message
   private showMessage(message: string, type: SwalMessageTypes) {
     Swal.fire('', message, type);
   }
-
-  // Function to navigate to the customer list
   goToCustomers() {
     this.router.navigateByUrl('/customer');
   }
