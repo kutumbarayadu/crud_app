@@ -1,0 +1,49 @@
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="payments" class="mat-elevation-z8">
+    <ng-container matColumnDef="payment_id">
+      <th mat-header-cell *matHeaderCellDef>PaymentId</th>
+      <td mat-cell *matCellDef="let customers"> {{customers.payment_id}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="order_id">
+      <th mat-header-cell *matHeaderCellDef> OrderId </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.order_id}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.amount}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="payment_method">
+      <th mat-header-cell *matHeaderCellDef> PaymentMethod </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.payment_method}} </td>
+    </ng-container>
+    <ng-container matColumnDef="payment_status">
+      <th mat-header-cell *matHeaderCellDef> PaymentStatus </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.payment_status}} </td>
+    </ng-container>
+    <!-- Edit Column -->
+
+    <ng-container>
+      <ng-container matColumnDef="payment_date">
+        <th mat-header-cell *matHeaderCellDef> Paymentdate </th>
+        <td mat-cell *matCellDef="let customers">
+          {{customers.payment_date}}
+        </td>
+      </ng-container>
+
+
+  </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>
+
+
+
+
+

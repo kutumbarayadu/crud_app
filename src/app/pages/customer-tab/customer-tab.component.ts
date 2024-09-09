@@ -18,6 +18,7 @@ import { CustomerAddressComponent } from "../customer-address/customer-address.c
 import { EditCustomerComponent } from "../edit-customer/edit-customer.component";
 import { MultpleAddressComponent } from "../multple-address/multple-address.component";
 import { OrdersComponent } from "../orders/orders.component";
+import { PaymentComponent } from "../payment/payment.component";
 // Corrected import
 //i//mport { CustomerService } from '../../services/customer.service'; // Updated the service import
 
@@ -41,7 +42,8 @@ import { OrdersComponent } from "../orders/orders.component";
     CustomerAddressComponent,
     CustomerAddressComponent,
     MultpleAddressComponent,
-    OrdersComponent
+    OrdersComponent,
+    PaymentComponent
 ],
   templateUrl: './customer-tab.component.html',
   styleUrls: ['./customer-tab.component.scss'] // Corrected styleUrls
