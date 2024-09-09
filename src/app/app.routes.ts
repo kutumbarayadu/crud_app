@@ -8,6 +8,7 @@ import { CustomerAddressComponent } from './pages/customer-address/customer-addr
 import { CustomerTabComponent } from './pages/customer-tab/customer-tab.component';
 import { MultpleAddressComponent } from './pages/multple-address/multple-address.component';
 import { AddmultipleAddressComponent } from './pages/addmultiple-address/addmultiple-address.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'customer-address', component: CustomerAddressComponent },
   { path: 'multple-address', component: MultpleAddressComponent },
   { path: 'customer-tab', component: CustomerTabComponent },
-  {path:'addmultiple-address',component:AddmultipleAddressComponent}
+  {path:'addmultiple-address',component:AddmultipleAddressComponent},
+  {path:'orders', component:OrdersComponent}
 ];

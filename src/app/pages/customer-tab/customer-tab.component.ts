@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { CustomerAddressComponent } from "../customer-address/customer-address.component";
 import { EditCustomerComponent } from "../edit-customer/edit-customer.component";
 import { MultpleAddressComponent } from "../multple-address/multple-address.component";
+import { OrdersComponent } from "../orders/orders.component";
 // Corrected import
 //i//mport { CustomerService } from '../../services/customer.service'; // Updated the service import
 
@@ -39,7 +40,8 @@ import { MultpleAddressComponent } from "../multple-address/multple-address.comp
     EditCustomerComponent,
     CustomerAddressComponent,
     CustomerAddressComponent,
-    MultpleAddressComponent
+    MultpleAddressComponent,
+    OrdersComponent
 ],
   templateUrl: './customer-tab.component.html',
   styleUrls: ['./customer-tab.component.scss'] // Corrected styleUrls
