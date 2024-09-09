@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
     MatSidenavModule,
     MatListModule,
     MatCardModule
+
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
