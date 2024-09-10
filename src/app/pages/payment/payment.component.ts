@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CustomerService } from '../../services/customersservice';
 
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-payment',
@@ -19,6 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatIconModule,
     MatCheckboxModule,
     FormsModule,
+    CommonModule,
   ],
   providers: [CustomerService],
   templateUrl: './payment.component.html',
