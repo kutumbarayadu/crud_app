@@ -19,6 +19,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../../services/customersservice';
 import Swal from 'sweetalert2';
 
+enum SwalMessageTypes {
+  Error = 'error',
+  Warning = 'warning',
+  Success = 'success',
+}
 @Component({
   selector: 'app-multiple-addresspopup',
   standalone: true,
@@ -51,7 +56,7 @@ export class MultipleAddresspopupComponent {
       city: ['', Validators.required],
       state: ['', [Validators.required]],
       country: ['', Validators.required],
-      pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+      pincode: ['', [Validators.required]],
     });
     this.getsingleAdd(this.data);
   }
@@ -71,8 +76,55 @@ export class MultipleAddresspopupComponent {
       }
     );
   }
+  nameValidator(control: any) {
+    const namePattern = /^[A-Za-z\s-]+$/;
+    if (!control.value || namePattern.test(control.value.trim())) {
+      return null;
+    }
+    return { invalidName: true };
+  }
+  private showMessage(message: string, type: SwalMessageTypes) {
+    Swal.fire('', message, type);
+  }
   update(): void {
+    if (!this.customerForm.valid) {
+      this.showMessage('Please correct the form.', SwalMessageTypes.Warning);
+      return;
+    }
+    const street = this.customerForm.get('street')?.value;
+    const streetValidation = this.nameValidator({ value: street });
 
+    if (streetValidation?.invalidName) {
+      Swal.fire('', 'Enter a valid street.', 'warning');
+      return;
+    }
+    const state = this.customerForm.get('state')?.value;
+    const stateValidation = this.nameValidator({ value: state});
+
+    if (stateValidation?.invalidName) {
+      Swal.fire('', 'Enter a valid state.', 'warning');
+      return;
+    }
+
+    const city = this.customerForm.get('city')?.value;
+    const cityValidation = this.nameValidator({ value: city});
+
+    if (cityValidation?.invalidName) {
+      Swal.fire('', 'Enter a valid city.', 'warning');
+      return;
+    }
+    const country = this.customerForm.get('country')?.value;
+    const countryValidation = this.nameValidator({ value: country});
+
+    if (countryValidation?.invalidName) {
+      Swal.fire('', 'Enter a valid country.', 'warning');
+      return;
+    }
+    const pincode= this.customerForm.get('pincode')?.value;
+    if (!/^[0-9]{6}$/.test(pincode)) {
+      Swal.fire('', 'Enter a valid pincode (6 digits).', 'warning');
+      return;
+    }
     if (this.customerForm.valid) {
       const customerData = this.customerForm.value;
       customerData.id = this.data;

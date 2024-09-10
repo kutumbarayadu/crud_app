@@ -8,8 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
-
-// Define types for validation results
 interface ValidateName {
   isValid: boolean;
   failedField?: string;
@@ -116,16 +114,7 @@ export class AddCustomerComponent implements OnInit {
 
 
 
-  // validateText(data: any): ValidateName {
-  //   const textInputs = [
-  //     { value: data.firstName, field: 'First Name' },
-  //     { value: data.lastName, field: 'Last Name' },
 
-
-  //   ];
-
-  //   return this.nameValidate(textInputs) || { isValid: true };
-  // }
   nameValidate(textInputs: any[]): ValidateName {
     for (const input of textInputs) {
       if (!this.isTextValid(input.value)) {
