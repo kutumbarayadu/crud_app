@@ -8,7 +8,7 @@
 
     <ng-container matColumnDef="order_date">
       <th mat-header-cell *matHeaderCellDef>Order Date</th>
-      <td mat-cell *matCellDef="let customers">{{ customers.order_date }}</td>
+      <td mat-cell *matCellDef="let customers">{{ customers.order_date | date: 'dd-MM-yyyy' }}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">

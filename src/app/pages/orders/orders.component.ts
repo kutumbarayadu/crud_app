@@ -7,6 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
@@ -18,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatCheckboxModule,
     FormsModule,
+    CommonModule,
   ],
   providers: [CustomerService],
   templateUrl: './orders.component.html',
