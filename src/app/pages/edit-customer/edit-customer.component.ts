@@ -37,10 +37,6 @@ export class EditCustomerComponent  implements OnInit{
   customerId: string | null = null;
   constructor(private fb: FormBuilder,private router: Router,private customerService: CustomerService,private route: ActivatedRoute) {}
   ngOnInit(): void {
-   // this.route.paramMap.subscribe(params => {
-    //  this.customerId = params.get('id')
-
-  //});
     this.route.params.subscribe(async (params) => {
       console.log("params",params)
       this.customerId = history.state.customerId;
@@ -90,12 +86,6 @@ export class EditCustomerComponent  implements OnInit{
       return;
     }
     const email = this.customerForm.get('email')?.value;
-    // const emailValidation = this.nameValidator({ value: email });
-
-    // if (emailValidation?.invalidName) {
-    //   Swal.fire('', 'Enter a valid email.', 'warning');
-    //   return;
-    // }
     const lastname = this.customerForm.get('lastname')?.value;
     const lastnameValidation = this.nameValidator({ value: lastname });
 

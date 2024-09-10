@@ -19,8 +19,6 @@ import { EditCustomerComponent } from "../edit-customer/edit-customer.component"
 import { MultpleAddressComponent } from "../multple-address/multple-address.component";
 import { OrdersComponent } from "../orders/orders.component";
 import { PaymentComponent } from "../payment/payment.component";
-// Corrected import
-//i//mport { CustomerService } from '../../services/customer.service'; // Updated the service import
 
 @Component({
   selector: 'app-customer-tab',
@@ -33,11 +31,11 @@ import { PaymentComponent } from "../payment/payment.component";
     MatSidenavModule,
     MatListModule,
     HttpClientModule,
-    MatPaginatorModule, // Updated to MatPaginatorModule
+    MatPaginatorModule,
     MatFormFieldModule,
-    MatTabsModule, // Added MatTabsModule
-    MatCardModule, // Added MatCardModule
-    ReactiveFormsModule, // Added ReactiveFormsModule
+    MatTabsModule,
+    MatCardModule,
+    ReactiveFormsModule,
     EditCustomerComponent,
     CustomerAddressComponent,
     CustomerAddressComponent,
@@ -46,7 +44,7 @@ import { PaymentComponent } from "../payment/payment.component";
     PaymentComponent
 ],
   templateUrl: './customer-tab.component.html',
-  styleUrls: ['./customer-tab.component.scss'] // Corrected styleUrls
+  styleUrls: ['./customer-tab.component.scss']
 })
 export class CustomerTabComponent {
   constructor(private router: Router, ) {}

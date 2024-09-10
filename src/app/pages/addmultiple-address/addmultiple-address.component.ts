@@ -35,8 +35,6 @@ throw new Error('Method not implemented.');
     //private customerService: CustomerService
   ) {}
   ngOnInit(): void {
-
- //   console.log("customerId::::::::", this.customerId)
     this.customerForm = this.fb.group({
       street: [  '', Validators.required],
       city: [ '', Validators.required],

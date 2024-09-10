@@ -1,6 +1,5 @@
 //import { MultpleAddressComponent } from './pages/multple-address/multple-address.component';
 import { Routes } from '@angular/router';
-import { CustomerComponent } from './pages/customer/customer.component';
 import { AddCustomerComponent } from './pages/add-customer/add-customer.component';
 import { EditCustomerComponent } from './pages/edit-customer/edit-customer.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -10,6 +9,7 @@ import { MultpleAddressComponent } from './pages/multple-address/multple-address
 import { AddmultipleAddressComponent } from './pages/addmultiple-address/addmultiple-address.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },

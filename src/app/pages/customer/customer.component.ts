@@ -47,22 +47,18 @@ export class CustomerComponent {
   button() {
     this.router.navigateByUrl('/add-customer');
   }
-
   home() {
     this.router.navigateByUrl('/welcome');
   }
-
   customer() {
     this.router.navigateByUrl('/customer');
   }
-
   editCustomer(element: any) {
     this.router.navigate(['/edit-customer', element.id]);
   }
   customeradress(element:any){
     this.router.navigate(['/customeradress', element.id]);
   }
-
   getCustomers() {
     this.customerService.getCustomers().subscribe(
       (data) => {
@@ -78,7 +74,7 @@ export class CustomerComponent {
   getCustomersAddress(){
     this.customerService.getCustomersAddress().subscribe(
       (data)=>{
-        // console.log('Customer data: Haem', data);
+
         this.dataSource = data;
       },
       (error) => {
@@ -93,7 +89,7 @@ export class CustomerComponent {
       this.customerService.deleteCustomer(customer_id).subscribe(
         (response) => {
           console.log('Customer deleted successfully:', response);
-          // Remove the deleted customer from the dataSource
+
           this.dataSource = this.dataSource.filter(
             (customer: any) => customer.customer_id == customer_id
           );
@@ -105,8 +101,6 @@ export class CustomerComponent {
     }
   }
   navigateToEditCustomer(id: string){
-    console.log("customerId",id)
-  //  this.router.navigateByUrl(`/customer-tab`)
     this.router.navigate(['/customer-tab'], {
       state: { customerId:id},
     });

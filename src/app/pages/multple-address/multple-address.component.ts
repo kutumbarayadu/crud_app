@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddpopupComponent } from '../addpopup/addpopup.component';
 import Swal from 'sweetalert2';
-
 import { MultipleAddresspopupComponent } from '../multiple-addresspopup/multiple-addresspopup.component';
 @Component({
   selector: 'app-multple-address',
@@ -53,7 +52,6 @@ navigateToEditCustomer() {
   }
 
   ngAfterViewInit() {}
-
   getmultple(customerid: any) {
     this.customerService.getmultipleAddress(customerid).subscribe(
       (data: any) => {

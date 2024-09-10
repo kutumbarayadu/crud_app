@@ -1,6 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,30 +32,28 @@ enum SwalMessageTypes {
     ReactiveFormsModule,
     MatCardModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
   ],
 
-  providers: [CustomerService], // Add this line
+  providers: [CustomerService],
   templateUrl: './addpopup.component.html',
   styleUrls: ['./addpopup.component.scss'],
 })
 export class AddpopupComponent {
-
-navigateToEditCustomer(arg0: any) {
-throw new Error('Method not implemented.');
-}
+  navigateToEditCustomer(arg0: any) {
+    throw new Error('Method not implemented.');
+  }
 
   customerForm!: FormGroup;
-  customerId: string ='';
+  customerId: string = '';
   is_default: boolean = false;
-
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private customerService: CustomerService,
     private route: ActivatedRoute,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
@@ -66,19 +69,18 @@ throw new Error('Method not implemented.');
   }
   goToCustomers() {
     this.router.navigateByUrl('/multple');
-  //this.router.navigate(['/customer'])
-
- }
- private showMessage(message: string, type: SwalMessageTypes) {
-  Swal.fire('', message, type);
-}
-nameValidator(control: any) {
-  const namePattern = /^[A-Za-z\s-]+$/;
-  if (!control.value || namePattern.test(control.value.trim())) {
-    return null;
+    //this.router.navigate(['/customer'])
   }
-  return { invalidName: true };
-}
+  private showMessage(message: string, type: SwalMessageTypes) {
+    Swal.fire('', message, type);
+  }
+  nameValidator(control: any) {
+    const namePattern = /^[A-Za-z\s-]+$/;
+    if (!control.value || namePattern.test(control.value.trim())) {
+      return null;
+    }
+    return { invalidName: true };
+  }
   onsubmit() {
     if (!this.customerForm.valid) {
       this.showMessage('Please correct the form.', SwalMessageTypes.Warning);
@@ -106,7 +108,6 @@ nameValidator(control: any) {
       return;
     }
 
-
     const pincode = this.customerForm.get('pincode')?.value;
     if (!/^[0-9]{6}$/.test(pincode)) {
       Swal.fire('', 'Enter a valid pincode', 'warning');
@@ -121,23 +122,13 @@ nameValidator(control: any) {
     }
     if (this.customerForm.valid) {
       const addressData = this.customerForm.value;
-     addressData.customerId=this.data
-     addressData.isDefault=this.is_default
-    //  const add ={
-    //    street:"jntu",
-    //    city:"hyd",
-    //    state:"telangana",
-    //    country:"india",
-    //    pincode:'"455050',
-    //    customerId:"595949393",
-    //    isDefault:false
-    //  }
-    console.log("addressData",addressData)
+      addressData.customerId = this.data;
+      addressData.isDefault = this.is_default;
+
+      console.log('addressData', addressData);
       this.customerService.addresscreate(addressData).subscribe(
         (res) => {
           console.log('res', res);
-
-          // Show success message using SweetAlert2
           Swal.fire({
             icon: 'success',
             title: 'Customer Added Successfully',
@@ -145,23 +136,18 @@ nameValidator(control: any) {
             timer: 1500,
           });
 
-          // Optionally, navigate to another page
           this.router.navigateByUrl('/customer');
         },
 
         (error) => {
           console.error('Error adding customer:', error);
-
-          // Show error message using SweetAlert2
           Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'There was an issue adding the customer.',
             confirmButtonText: 'Try Again',
           });
-
         }
-
       );
     }
   }

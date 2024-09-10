@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { CustomerService } from '../../services/customersservice';
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -32,16 +31,12 @@ export class PaymentComponent {
   customerId: string | null = null;
   constructor(private router: Router, private customerService: CustomerService,private route: ActivatedRoute) {}
   ngOnInit(): void {
-
    this.route.params.subscribe(async (params) => {
     console.log("params",params)
     this.customerId = history.state.customerId;
-
   });
    this.getorders( this.customerId)
   }
-
-
   getorders(customerId:any) {
     this.customerService.getorders(customerId).subscribe(
       (data) => {
@@ -53,6 +48,5 @@ export class PaymentComponent {
         console.error('Error fetching customers:', error);
       }
     );
-
   }
 }

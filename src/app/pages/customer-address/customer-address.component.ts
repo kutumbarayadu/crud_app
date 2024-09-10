@@ -1,6 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,13 +31,9 @@ enum SwalMessageTypes {
   ],
   providers: [CustomerService],
   templateUrl: './customer-address.component.html',
-  styleUrl: './customer-address.component.scss'
+  styleUrl: './customer-address.component.scss',
 })
-export class CustomerAddressComponent implements OnInit{
-onSubmit() {
-throw new Error('Method not implemented.');
-}
-
+export class CustomerAddressComponent implements OnInit {
   customerForm!: FormGroup;
   customerId: string | null = null;
 
@@ -45,26 +46,25 @@ throw new Error('Method not implemented.');
 
   ngOnInit(): void {
     this.route.params.subscribe(async (params) => {
-      console.log("params", params);
+      console.log('params', params);
       this.customerId = history.state.customerId;
-     this.loadCustomerData(this.customerId);
+      this.loadCustomerData(this.customerId);
     });
-    console.log("customerId::::::::", this.customerId)
+    console.log('customerId::::::::', this.customerId);
     this.customerForm = this.fb.group({
-      street: [  '', Validators.required],
-      city: [ '', Validators.required],
-      state: [ '', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
       country: ['', Validators.required],
-      pincode: [ '', Validators.required],
+      pincode: ['', Validators.required],
     });
   }
-
 
   loadCustomerData(customerId: any): void {
     this.customerService.getCustomerAdressById(customerId).subscribe(
       (data) => {
         this.customerForm.patchValue(data);
-        console.log("console", console);
+        console.log('console', console);
       },
       (error) => {
         console.error('Error fetching customer data:', error);
@@ -92,21 +92,21 @@ throw new Error('Method not implemented.');
       return;
     }
     const city = this.customerForm.get('city')?.value;
-    const cityValidation = this.nameValidator({ value:city });
+    const cityValidation = this.nameValidator({ value: city });
 
     if (cityValidation?.invalidName) {
       Swal.fire('', 'Enter a valid city.', 'warning');
       return;
     }
     const country = this.customerForm.get('country')?.value;
-    const countryValidation = this.nameValidator({ value:country });
+    const countryValidation = this.nameValidator({ value: country });
 
     if (countryValidation?.invalidName) {
       Swal.fire('', 'Enter a valid country.', 'warning');
       return;
     }
     const state = this.customerForm.get('state')?.value;
-    const stateValidation = this.nameValidator({ value:state });
+    const stateValidation = this.nameValidator({ value: state });
 
     if (stateValidation?.invalidName) {
       Swal.fire('', 'Enter a valid state.', 'warning');
@@ -121,24 +121,24 @@ throw new Error('Method not implemented.');
 
     if (this.customerForm.valid) {
       const customerData = this.customerForm.value;
-      this.customerService.updatecustomers(this.customerId, customerData).subscribe(
-        (res) => {
-          console.log('Customer updated successfully', res);
-        this.router.navigateByUrl('/customer');
-
-        },
-        (error) => {
-          console.error('Error updating customer:', error);
-        }
-      );
+      this.customerService
+        .updatecustomers(this.customerId, customerData)
+        .subscribe(
+          (res) => {
+            console.log('Customer updated successfully', res);
+            this.router.navigateByUrl('/customer');
+          },
+          (error) => {
+            console.error('Error updating customer:', error);
+          }
+        );
     }
   }
   private showMessage(message: string, type: SwalMessageTypes) {
     Swal.fire('', message, type);
   }
   goToCustomers() {
-     this.router.navigateByUrl('/multple');
-   //this.router.navigate(['/customer'])
-
+    this.router.navigateByUrl('/multple');
+    //this.router.navigate(['/customer'])
   }
 }
