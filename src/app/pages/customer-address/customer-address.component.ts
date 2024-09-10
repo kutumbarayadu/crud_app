@@ -138,7 +138,7 @@ export class CustomerAddressComponent implements OnInit {
     Swal.fire('', message, type);
   }
   goToCustomers() {
-    this.router.navigateByUrl('/multple');
+    this.router.navigateByUrl('/customer');
     //this.router.navigate(['/customer'])
   }
 }

@@ -30,8 +30,6 @@ enum SwalMessageTypes {
   styleUrl: './edit-customer.component.scss'
 })
 export class EditCustomerComponent  implements OnInit{
-
-
   customerForm!: FormGroup;
   originalValues:any
   customerId: string | null = null;
