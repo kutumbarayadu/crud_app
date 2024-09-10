@@ -1,6 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="side" opened>
-     <mat-toolbar>Ailo</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item (click)="home()">Home</a>
       <a mat-list-item (click)="customer()">Customers </a>
@@ -83,7 +82,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <!-- Paginator -->
-      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
