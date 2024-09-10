@@ -57,4 +57,9 @@ updatesingleAddress(id: any, customerData: any): Observable<any> {
 getorders(id:number):Observable<any> {
   return this.http.get(`${this.apiUrl}/getPaymentById/${id}`);
 }
+getCustomersAdd(pageIndex: number, pageSize: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/customers-with-addresses`, {
+    params: { page: pageIndex, size: pageSize },
+  });
+}
 }
