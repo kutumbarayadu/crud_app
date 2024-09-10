@@ -7,7 +7,7 @@
     <button mat-raised-button color="primary"  (click)="goToCustomers()">Back</button>
   </div>
   <mat-card-content>
-    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="customerForm">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Street</mat-label>
         <input matInput formControlName="street" required>
@@ -29,7 +29,7 @@
         <input matInput formControlName="pincode" required>
       </mat-form-field>
       <div style="text-align: center; margin-top: 20px;">
-        <button mat-raised-button color="primary" type="submit"(click)=" update()">Submit</button>
+        <button mat-raised-button color="primary" type="submit"(click)=" update()">Update</button>
       </div>
     </form>
   </mat-card-content>
