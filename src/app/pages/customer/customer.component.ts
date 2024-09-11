@@ -1,7 +1,7 @@
 
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -12,6 +12,7 @@ import { CustomerService } from '../../services/customersservice';
 import { customers } from '../../entites/customers';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-customer',
   standalone: true,
@@ -30,12 +31,18 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss']
 })
-export class CustomerComponent {
+export class CustomerComponent  implements AfterViewInit {
 
   displayedColumns: string[] = ['customer_id', 'first_name', 'last_name', 'phone_number', 'street','city','state','country','pincode', 'edit','delete'];
-  dataSource:any;
+  dataSource = new MatTableDataSource<any,MatPaginator>([]);
   customerForm: any;
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator
+  ngAfterViewInit() {
 
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
   constructor(private router: Router, private customerService: CustomerService) {}
 
   ngOnInit(): void {
@@ -43,7 +50,6 @@ export class CustomerComponent {
   // this.getCustomers();
    this.getCustomersAddress();
   }
-
   button() {
     this.router.navigateByUrl('/add-customer');
   }
@@ -59,23 +65,16 @@ export class CustomerComponent {
   customeradress(element:any){
     this.router.navigate(['/customeradress', element.id]);
   }
-  getCustomers() {
-    this.customerService.getCustomers().subscribe(
-      (data) => {
-        console.log('Customer data: MMJ', data);
-        this.dataSource = data;
-      },
-      (error) => {
-        console.error('Error fetching customers:', error);
-      }
-    );
 
-  }
   getCustomersAddress(){
     this.customerService.getCustomersAddress().subscribe(
       (data)=>{
 
-        this.dataSource = data;
+       // this.dataSource = data;
+       this.dataSource.data = data;
+       console.log("data",this.dataSource)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
       },
       (error) => {
         console.error('Error fetching customers:', error);
@@ -90,7 +89,7 @@ export class CustomerComponent {
         (response) => {
           console.log('Customer deleted successfully:', response);
 
-          this.dataSource = this.dataSource.filter(
+          this.dataSource.data = this.dataSource.data.filter(
             (customer: any) => customer.customer_id == customer_id
           );
         },
