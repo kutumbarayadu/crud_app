@@ -39,7 +39,6 @@ export class CustomerComponent  implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator
   ngAfterViewInit() {
-
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -69,7 +68,6 @@ export class CustomerComponent  implements AfterViewInit {
   getCustomersAddress(){
     this.customerService.getCustomersAddress().subscribe(
       (data)=>{
-
        // this.dataSource = data;
        this.dataSource.data = data;
        console.log("data",this.dataSource)
